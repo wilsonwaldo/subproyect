@@ -5,7 +5,18 @@
   "scripts": {
     "start": "node ./bin/www"
   },
-  "dependencies": {
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/wilsonwaldo/subproyect.git"
+  },
+  "keywords":
+  [
+    "example",
+    "heroku"
+  ],
+  "dependencies":
+  {
     "express": "~4.2.0",
     "static-favicon": "~1.0.0",
     "morgan": "~1.0.0",
@@ -14,5 +25,10 @@
     "debug": "~0.7.4",
     "jade": "~1.3.1",
     "stylus": "~0.46.3"
+  },
+  "author": "wilsonwaldo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wilsonwaldo/subproyect/issues"
   }
 }
