@@ -1,0 +1,1 @@
+It's a readme file of proyects writed with NoteBloc
