@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(Facebook.middleware({ appId: 'YOUR_APP_ID', secret: 'YOUR_APP_SECRET' }));
+app.use(Facebook.middleware({ appId: '347402531995473', secret: '5ef5e4a4510cff3cc1792747afbeb0f2' }));
 
 app.use('/', routes);
 app.use('/users', users);
