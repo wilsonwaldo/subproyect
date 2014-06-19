@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var calls = require('./routes/calls');
+var me = require('./routes/me');
 
 var app = express();
 
@@ -27,33 +28,17 @@ app.use(Facebook.middleware({ appId: '347402531995473', secret: '5ef5e4a4510cff3
 app.use('/', routes);
 app.use('/users', users);
 app.use('/calls', calls);
+app.use('/me', me);
 
 /*var app = express.createServer();*/
-
-app.get('/', Facebook.loginRequired(), function (req, res) {
-  req.facebook.api('/me', function(err, user) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello, ' + user.name + '!');
-  });
-});
-
-
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-/// error handlers
-
-
 // Access-Control
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
  });
+
+/// error handlers
 
 app.get('/', function(req, res, next) {
   
@@ -63,6 +48,15 @@ app.post('/', function(req, res, next) {
 
 });
 // Access-Control
+
+
+/// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
 
 // development error handler
 // will print stacktrace
