@@ -1,4 +1,5 @@
 var express = require('express');
+var Facebook = require('facebook-node-sdk');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -21,10 +22,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(Facebook.middleware({ appId: 'YOUR_APP_ID', secret: 'YOUR_APP_SECRET' }));
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/calls', calls);
+
+/*var app = express.createServer();*/
+
+app.get('/', Facebook.loginRequired(), function (req, res) {
+  req.facebook.api('/me', function(err, user) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello, ' + user.name + '!');
+  });
+});
+
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
